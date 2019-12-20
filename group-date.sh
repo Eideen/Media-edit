@@ -15,29 +15,15 @@ for a in *; do
     SEKUND=${BASH_REMATCH[7]}
     FORMAT=${BASH_REMATCH[8]}
 
-    install -d ${YEAR}-${MANE}-${DAG}
-    mv $a  ${YEAR}-${MANE}-${DAG}/
+patdir="${YEAR}-${MANE}-${DAG}"
+    if [[ ! "$(pwd)" =~ $patdir ]]; then
+      install -d ${YEAR}-${MANE}-${DAG}
+      mv $a  ${YEAR}-${MANE}-${DAG}/
+    else
+      echo "## current folder is $patdir, not moving"
+
+    fi
     #statements
   fi
 
 done
-
-# echo $a
-# echo "  full: ${BASH_REMATCH[0]}"
-# echo
-# echo "  Navn: ${BASH_REMATCH[1]}"
-# echo "    År: ${BASH_REMATCH[2]}"
-# echo "  måne: ${BASH_REMATCH[3]}"
-# echo "   dag: ${BASH_REMATCH[4]}"
-# echo "  time: ${BASH_REMATCH[5]}"
-# echo "minutt: ${BASH_REMATCH[6]}"
-# echo "sekund: ${BASH_REMATCH[7]}"
-# echo "format: ${BASH_REMATCH[8]}"
-
-
-# for i in "${BASH_REMATCH[@]}"
-# do
-#   N=1
-#    echo "$i"
-#
-# done
