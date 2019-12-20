@@ -3,9 +3,9 @@
 #a='2013-10-13_15-07.01.mp4'
 # [._-]
 pat='(.*)[\._-]?([0-9]{4})[\._-]([0-9]{2})[\._-]([0-9]{2})[\._-]([0-9]{2})[\._-]([0-9]{2})[\._-]([0-9]{2})\.(avi|mp4)'
-for a in *; do
+for F in *; do
   #statements
-  if [[ "$a" =~ $pat ]]; then
+  if [[ "$F" =~ $pat ]]; then
     NAVN=${BASH_REMATCH[1]}
     YEAR=${BASH_REMATCH[2]}
     MANE=${BASH_REMATCH[3]}
@@ -15,15 +15,16 @@ for a in *; do
     SEKUND=${BASH_REMATCH[7]}
     FORMAT=${BASH_REMATCH[8]}
 
-patdir="${YEAR}-${MANE}-${DAG}"
-    if [[ ! "$(pwd)" =~ $patdir ]]; then
-      install -d ${YEAR}-${MANE}-${DAG}
-      mv $a  ${YEAR}-${MANE}-${DAG}/
+    PATDIR="${YEAR}-${MANE}-${DAG}"
+
+    if [[ ! "$(pwd)" =~ ${PATDIR} ]]; then
+      install -d ${PATDIR}
+      mv $F  ${PATDIR}/
     else
-      echo "## current folder is $patdir, not moving"
+      echo "## current folder is $patdir, not moving $F"
 
     fi
-    #statements
+
   fi
 
 done
